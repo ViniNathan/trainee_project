@@ -1,6 +1,11 @@
-# Backend com Bun
+## Scraping da Amazon
 
-Este é um projeto de backend utilizando Bun como runtime JavaScript, com Express para criação de APIs, Axios para requisições HTTP e JSDOM para manipulação de DOM no servidor.
+Este projeto oferece uma API para realizar scraping da página de resultados de pesquisa da Amazon.
+
+### Requisitos
+
+- Node.js 14+ ou Bun runtime
+- Conexão com a internet
 
 ## Dependências
 
@@ -9,27 +14,51 @@ Este é um projeto de backend utilizando Bun como runtime JavaScript, com Expres
 - [Axios](https://axios-http.com) - Cliente HTTP baseado em promises
 - [JSDOM](https://github.com/jsdom/jsdom) - Implementação JavaScript de diversos padrões web
 
-## Instalação
+### Instalação
 
 ```bash
+# Instalar dependências
+npm install
+# ou
 bun install
 ```
 
-## Execução
-
-Para iniciar o servidor:
+### Execução
 
 ```bash
+# Iniciar o servidor
 bun start
+
+# Iniciar em modo de desenvolvimento (com hot reload)
+bun run dev
 ```
 
-Para desenvolvimento com hot reload:
+### Endpoints
 
-```bash
-bun dev
+- **GET /api/scrape**
+  - Query params:
+    - `keyword`: Palavra-chave para pesquisar na Amazon
+  - Retorna:
+    - JSON com os produtos encontrados, incluindo título, avaliação, número de avaliações e URL da imagem
+
+### Exemplo de uso
+
+```
+GET http://localhost:3000/api/scrape?keyword=smartphone
 ```
 
-## Endpoints
-
-- `GET /`: Retorna uma mensagem confirmando que a API está funcionando
-- `GET /exemplo`: Exemplo de uso do Axios e JSDOM para extrair informações de uma página web
+Exemplo de resposta:
+```json
+{
+  "keyword": "smartphone",
+  "products": [
+    {
+      "title": "Smartphone XYZ 128GB",
+      "rating": "4.5",
+      "reviewCount": "1252",
+      "imageUrl": "https://www.amazon.com.br/images/product.jpg"
+    },
+    // ... mais produtos
+  ]
+}
+```
