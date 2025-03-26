@@ -2,7 +2,7 @@ import express from 'express';
 import scrapeRoutes from './src/routes/scrapeRoutes';
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 // Middleware for JSON parsing
 app.use(express.json());
